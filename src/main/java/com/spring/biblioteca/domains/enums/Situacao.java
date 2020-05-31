@@ -1,10 +1,8 @@
 package com.spring.biblioteca.domains.enums;
 
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
 public enum Situacao {
 
     DISPONIVEL(1, "Disponível"),
@@ -18,21 +16,6 @@ public enum Situacao {
         this.descricao = descricao;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
 
     public static Situacao toEnum(Integer codigo) {
         if (codigo == null) {
