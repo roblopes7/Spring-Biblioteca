@@ -1,4 +1,4 @@
-package com.udemy.cursospring.cursospring.services.exceptions;
+package com.spring.biblioteca.service.exceptions;
 
 public class DataIntegrityException extends RuntimeException{
     public DataIntegrityException(String msg) {

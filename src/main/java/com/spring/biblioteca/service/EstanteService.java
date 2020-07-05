@@ -1,44 +1,46 @@
 package com.spring.biblioteca.service;
 
-import com.spring.biblioteca.domains.Escolaridade;
-import com.spring.biblioteca.repositories.EscolaridadeRepository;
+import com.spring.biblioteca.domains.Estante;
+import com.spring.biblioteca.repositories.EstanteRepository;
 import com.spring.biblioteca.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-public class EscolaridadeService {
+@Service
+public class EstanteService {
 
     @Autowired
-    EscolaridadeRepository repository;
+    EstanteRepository repository;
 
-    public Escolaridade find(Integer id){
-        Optional<Escolaridade> obj = repository.findById(id);
+    public Estante find(short id){
+        Optional<Estante> obj = repository.findById(id);
         return obj.orElseThrow(()->
                 new ObjectNotFoundException("Objeto não encontrado! Id: " + id + " Tipo: "
-                        + Escolaridade.class.getName()));
+                        + Estante.class.getName()));
     }
 
-    public Escolaridade insert(Escolaridade obj) {
+    public Estante insert(Estante obj) {
         return repository.saveAndFlush(obj);
     }
 
-    public Escolaridade update(Escolaridade obj) {
+    public Estante update(Estante obj) {
         return repository.saveAndFlush(obj);
     }
 
-    public void delete(Integer id) {
+    public void delete(short id) {
         find(id);
         try {
             repository.deleteById(id);
         } catch (DataIntegrityViolationException error) {
-            throw new DataIntegrityViolationException("Não é possível excluir uma informação de escolaridade que possui vinculos.");
+            throw new DataIntegrityViolationException("Não é possível excluir uma estante que possui vinculos.");
         }
     }
 
-    public List<Escolaridade> findAll() {
+    public List<Estante> findAll() {
         return repository.findAll();
     }
 

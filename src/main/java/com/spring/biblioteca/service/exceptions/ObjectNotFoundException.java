@@ -1,4 +1,4 @@
-package com.udemy.cursospring.cursospring.services.exceptions;
+package com.spring.biblioteca.service.exceptions;
 
 public class ObjectNotFoundException extends RuntimeException{
     public ObjectNotFoundException(String msg) {

@@ -1,31 +1,33 @@
 package com.spring.biblioteca.service;
 
-import com.spring.biblioteca.domains.Endereco;
-import com.spring.biblioteca.repositories.EnderecoRepository;
+import com.spring.biblioteca.domains.Escolaridade;
+import com.spring.biblioteca.repositories.EscolaridadeRepository;
 import com.spring.biblioteca.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-public class EnderecoService {
+@Service
+public class EscolaridadeService {
 
     @Autowired
-    EnderecoRepository repository;
+    EscolaridadeRepository repository;
 
-    public Endereco find(Integer id){
-        Optional<Endereco> obj = repository.findById(id);
+    public Escolaridade find(Integer id){
+        Optional<Escolaridade> obj = repository.findById(id);
         return obj.orElseThrow(()->
                 new ObjectNotFoundException("Objeto não encontrado! Id: " + id + " Tipo: "
-                        + Endereco.class.getName()));
+                        + Escolaridade.class.getName()));
     }
 
-    public Endereco insert(Endereco obj) {
+    public Escolaridade insert(Escolaridade obj) {
         return repository.saveAndFlush(obj);
     }
 
-    public Endereco update(Endereco obj) {
+    public Escolaridade update(Escolaridade obj) {
         return repository.saveAndFlush(obj);
     }
 
@@ -34,11 +36,11 @@ public class EnderecoService {
         try {
             repository.deleteById(id);
         } catch (DataIntegrityViolationException error) {
-            throw new DataIntegrityViolationException("Não é possível excluir um endereco que possui vinculos.");
+            throw new DataIntegrityViolationException("Não é possível excluir uma informação de escolaridade que possui vinculos.");
         }
     }
 
-    public List<Endereco> findAll() {
+    public List<Escolaridade> findAll() {
         return repository.findAll();
     }
 

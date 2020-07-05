@@ -1,31 +1,33 @@
 package com.spring.biblioteca.service;
 
-import com.spring.biblioteca.domains.Exemplar;
-import com.spring.biblioteca.repositories.ExemplarRepository;
+import com.spring.biblioteca.domains.Livro;
+import com.spring.biblioteca.repositories.LivroRepository;
 import com.spring.biblioteca.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-public class ExemplarService {
+@Service
+public class LivroService {
 
     @Autowired
-    ExemplarRepository repository;
+    LivroRepository repository;
 
-    public Exemplar find(Integer id){
-        Optional<Exemplar> obj = repository.findById(id);
+    public Livro find(Integer id){
+        Optional<Livro> obj = repository.findById(id);
         return obj.orElseThrow(()->
                 new ObjectNotFoundException("Objeto não encontrado! Id: " + id + " Tipo: "
-                        + Exemplar.class.getName()));
+                        + Livro.class.getName()));
     }
 
-    public Exemplar insert(Exemplar obj) {
+    public Livro insert(Livro obj) {
         return repository.saveAndFlush(obj);
     }
 
-    public Exemplar update(Exemplar obj) {
+    public Livro update(Livro obj) {
         return repository.saveAndFlush(obj);
     }
 
@@ -34,11 +36,11 @@ public class ExemplarService {
         try {
             repository.deleteById(id);
         } catch (DataIntegrityViolationException error) {
-            throw new DataIntegrityViolationException("Não é possível excluir uma Exemplar que possui vinculos.");
+            throw new DataIntegrityViolationException("Não é possível excluir um Livro que possui vinculos.");
         }
     }
 
-    public List<Exemplar> findAll() {
+    public List<Livro> findAll() {
         return repository.findAll();
     }
 

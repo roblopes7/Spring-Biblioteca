@@ -1,44 +1,46 @@
 package com.spring.biblioteca.service;
 
-import com.spring.biblioteca.domains.Estante;
-import com.spring.biblioteca.repositories.EstanteRepository;
+import com.spring.biblioteca.domains.Exemplar;
+import com.spring.biblioteca.repositories.ExemplarRepository;
 import com.spring.biblioteca.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-public class EstanteService {
+@Service
+public class ExemplarService {
 
     @Autowired
-    EstanteRepository repository;
+    ExemplarRepository repository;
 
-    public Estante find(short id){
-        Optional<Estante> obj = repository.findById(id);
+    public Exemplar find(Integer id){
+        Optional<Exemplar> obj = repository.findById(id);
         return obj.orElseThrow(()->
                 new ObjectNotFoundException("Objeto não encontrado! Id: " + id + " Tipo: "
-                        + Estante.class.getName()));
+                        + Exemplar.class.getName()));
     }
 
-    public Estante insert(Estante obj) {
+    public Exemplar insert(Exemplar obj) {
         return repository.saveAndFlush(obj);
     }
 
-    public Estante update(Estante obj) {
+    public Exemplar update(Exemplar obj) {
         return repository.saveAndFlush(obj);
     }
 
-    public void delete(short id) {
+    public void delete(Integer id) {
         find(id);
         try {
             repository.deleteById(id);
         } catch (DataIntegrityViolationException error) {
-            throw new DataIntegrityViolationException("Não é possível excluir uma estante que possui vinculos.");
+            throw new DataIntegrityViolationException("Não é possível excluir um Exemplar que possui vinculos.");
         }
     }
 
-    public List<Estante> findAll() {
+    public List<Exemplar> findAll() {
         return repository.findAll();
     }
 

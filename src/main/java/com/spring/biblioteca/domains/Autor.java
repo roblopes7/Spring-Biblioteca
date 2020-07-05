@@ -1,5 +1,6 @@
 package com.spring.biblioteca.domains;
 
+import com.spring.biblioteca.dto.AutorDTO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,8 +27,8 @@ public class Autor implements Serializable {
     public Autor() {
     }
 
-    public Autor(Integer id, String nome) {
-        this.id = id;
-        this.nome = nome;
+    public  Autor(AutorDTO dto){
+        this.id = dto.getId();
+        this.nome = dto.getNome();
     }
 }
