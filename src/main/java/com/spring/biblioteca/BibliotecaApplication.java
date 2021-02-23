@@ -1,6 +1,6 @@
 package com.spring.biblioteca;
 
-import com.spring.biblioteca.domains.utils.UFEstados;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

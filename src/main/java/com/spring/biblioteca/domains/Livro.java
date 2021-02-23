@@ -31,6 +31,14 @@ public class Livro implements Serializable {
     public Livro() {
     }
 
+    public Livro(Livro obj){
+        this.id = obj.getId();
+        this.titulo = obj.getTitulo();
+        this.editora = obj.getEditora();
+        this.ano = obj.getAno();
+        this.estante = obj.getEstante();
+    }
+
     public Livro(Integer id, String titulo, String editora, Integer ano, Estante estante) {
         this.id = id;
         this.titulo = titulo;

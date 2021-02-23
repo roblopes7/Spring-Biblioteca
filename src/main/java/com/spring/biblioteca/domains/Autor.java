@@ -26,8 +26,9 @@ public class Autor implements Serializable {
     public Autor() {
     }
 
-    public Autor(Integer id, String nome) {
-        this.id = id;
-        this.nome = nome;
+    public Autor(Autor obj) {
+        this.id = obj.getId();
+        this.livros = obj.getLivros();
+        this.nome = obj.getNome();
     }
 }

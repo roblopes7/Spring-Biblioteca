@@ -2,6 +2,7 @@ package com.spring.biblioteca.domains;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class Pessoa implements Serializable {
 
     @Id
@@ -40,4 +42,17 @@ public class Pessoa implements Serializable {
     @JoinColumn(name = "RESPONSAVEL_ID", nullable = true)
     private Responsavel responsavel;
 
+    public Pessoa(Pessoa p) {
+        this.id = p.getId();
+        this.nome = p.getNome();
+        this.sexo = p.getSexo();
+        this.cpf = p.getCpf();
+        this.dataNascimento = p.getDataNascimento();
+        this.ufNaturalidade = p.getUfNaturalidade();
+        this.cidadeNaturalidade = p.getCidadeNaturalidade();
+        this.rg = p.getRg();
+        this.bolsaAux = p.getBolsaAux();
+        this.numeroBolsaAux = p.getNumeroBolsaAux();
+        this.responsavel = p.getResponsavel();
+    }
 }
